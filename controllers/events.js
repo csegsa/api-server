@@ -4,6 +4,7 @@ export const getEvents = (req, res) => {
     Event.find({}, (err, events) => {
         if (err) {
             res.send(err);
+            console.log(`Error fetching events: ${err}`);
         }
         res.json(events);
     });
@@ -11,17 +12,21 @@ export const getEvents = (req, res) => {
 };
 
 export const getEventById = (req, res) => {
+    // TODO: Implement
     Event.findById(req.params.eventId, (err, event) => {
         if (err) {
             res.send(err);
+            console.log(`Error fetching event: ${err}`);
         }
         res.json(event);
     });
 };
 export const getUpcomingEvents = (req, res) => {
+    // TODO: get upcoming events
     Event.find({}, (err, events) => {
         if (err) {
             res.send(err);
+            console.log(`Error fetching events: ${err}`);
         }
         res.json(events);
     });
@@ -37,7 +42,9 @@ export const createEvent = async (req, res) => {
     try {
         const savedEvent = await event.save();
         res.json(savedEvent);
+        console.log(`Event ${savedEvent._id} created successfully`);
     } catch (err) {
         res.send(err);
+        console.log(`Error creating event ${err}`);
     }
 };

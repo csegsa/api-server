@@ -2,7 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from "mongoose";
+import 'dotenv/config';
 import eventsRouter from './routes/events.js';
+
 
 const app = express();
 
@@ -11,7 +13,8 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cors());
 app.use('/events', eventsRouter);
 
-const CONNECT_URL = "";
+console.log(process.env.MONGODB_CONNECTION_STRING)
+const CONNECT_URL = process.env.MONGODB_CONNECTION_STRING;
 const PORT = process.env.PORT || 5000;
 
 try {
